@@ -2,6 +2,7 @@ package com.faculdade.modelo;
 
 import java.io.Serializable;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,6 +17,8 @@ public class Departamento implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long iddepartamento;
+	
+	@Column(name = "nome",length =50,nullable = false)
 	private String nome;
 	
 	
