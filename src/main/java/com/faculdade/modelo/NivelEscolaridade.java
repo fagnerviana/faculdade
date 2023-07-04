@@ -9,18 +9,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Departamento implements Serializable {
-	
-	//Atributos
-	
+public class NivelEscolaridade implements Serializable {
 	
 	/**
 	 * 
@@ -29,13 +28,11 @@ public class Departamento implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long idDepartamento;
+	@Column(name = "id_nivelescolaridade")
+	private long idNivelEscolaridade;
 	
-	//coluna da tabela com os seus detalhes
-	@Column(name = "nome",length =50,nullable = false)
+	@Column(name = "nome", length = 50, nullable = false)
 	private String nome;
-	
-	
 	
 
 }
