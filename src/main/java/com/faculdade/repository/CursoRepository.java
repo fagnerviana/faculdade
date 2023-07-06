@@ -7,5 +7,6 @@ import com.faculdade.modelo.Curso;
 
 @Repository
 public interface CursoRepository extends JpaRepository<Curso, Long>{
+	
 
 }
