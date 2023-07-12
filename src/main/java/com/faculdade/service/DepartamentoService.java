@@ -6,9 +6,9 @@ import com.faculdade.modelo.Departamento;
 
 public interface DepartamentoService {
 	
-	Departamento incluirNovoDepartamento(Departamento departamento);
+	Departamento incluirNovoDepartamento(Long id, String nome);
 	Departamento excluirDepartamento(Long id);
-	Departamento atualizarDepartamento(Departamento departamento);
+	Departamento atualizarDepartamento(Long id, String nome);
 	Departamento buscarDepartamento(Long id);
 	List<Departamento> listarDepartamento();
 	

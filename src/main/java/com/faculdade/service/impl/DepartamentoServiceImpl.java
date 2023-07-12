@@ -16,29 +16,15 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class DepartamentoServiceImpl implements DepartamentoService{
 	
+
 	//realizar a injeção de dependência automaticamente. 
 	//Ela marca um ponto de injeção em uma classe e permite que o Spring resolva e forneça a instância adequada 
 	//de uma dependência.
+	
 	private final DepartamentoRepository departamentoRepository;
-	@Autowired
-	public DepartamentoServiceImpl(DepartamentoRepository departamentoRepository) {
-		this.departamentoRepository= departamentoRepository;
-	}
 	
-	
-	@Override
-	public Departamento incluirNovoDepartamento(Departamento departamento) {
-		return departamentoRepository.save(departamento);
-	}
-
 	@Override
 	public Departamento excluirDepartamento(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Departamento atualizarDepartamento(Departamento departamento) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -51,11 +37,24 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 				}
 				
 				);
-	}
+		}
 
 	@Override
 	public List<Departamento> listarDepartamento() {
 		return departamentoRepository.findAll();
+	}
+
+	@Override
+	public Departamento atualizarDepartamento(Long id, String nome) {
+		Departamento atualizar= new Departamento(id,nome);
+		
+		return departamentoRepository.save(atualizar);
+	}
+
+	@Override
+	public Departamento incluirNovoDepartamento(Long id, String nome) {
+		Departamento novo = new Departamento(id,nome);
+		return departamentoRepository.save(novo);
 	}
 	
 

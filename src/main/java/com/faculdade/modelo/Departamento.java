@@ -22,8 +22,6 @@ import lombok.ToString;
 public class Departamento implements Serializable {
 	
 	//Atributos
-	
-	
 	/**
 	 * 
 	 */
@@ -31,13 +29,10 @@ public class Departamento implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long idDepartamento;
+	private Long idDepartamento;
 	
 	//coluna da tabela com os seus detalhes
 	@Column(name = "nome",length =50,nullable = false)
-	private String nome;
-	
-	
-	
+	private String nome;	
 
 }
