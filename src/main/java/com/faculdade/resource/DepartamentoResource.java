@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.faculdade.modelo.Departamento;
 import com.faculdade.service.DepartamentoService;
 
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 
+@Api(value ="com.faculdade/departamento")
 @RestController
 @RequestMapping("/departamento")
 @RequiredArgsConstructor
