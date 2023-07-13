@@ -2,10 +2,12 @@ package com.faculdade.resource;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,6 +38,18 @@ public class DepartamentoResource {
 	@PutMapping("/{Departamento}")
 	public Departamento atualizarDepartamento( Long id, String nome) {
 		return departamentoservice.atualizarDepartamento(id,nome);
+	}
+	
+	@DeleteMapping("/{deletar}")
+	public Departamento excluirDepartamento(Long id) {
+		departamentoservice.excluirDepartamento(id);
+		return null;
+	}
+	@PostMapping
+	public Departamento incluirNovoDepartamento(@RequestBody Long id, String nome) {
+		
+		return departamentoservice.incluirNovoDepartamento(id, nome);
+		
 	}
 	
 }

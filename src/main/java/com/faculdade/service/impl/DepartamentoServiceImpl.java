@@ -23,11 +23,7 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 	
 	private final DepartamentoRepository departamentoRepository;
 	
-	@Override
-	public Departamento excluirDepartamento(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public Departamento buscarDepartamento(Long id) {
@@ -55,6 +51,12 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 	public Departamento incluirNovoDepartamento(Long id, String nome) {
 		Departamento novo = new Departamento(id,nome);
 		return departamentoRepository.save(novo);
+	}
+
+	@Override
+	public void excluirDepartamento(Long id) {
+		Departamento excluir = buscarDepartamento(id);
+		departamentoRepository.deleteById(excluir.getIdDepartamento());
 	}
 	
 
