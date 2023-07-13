@@ -2,13 +2,10 @@ package com.faculdade.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.faculdade.modelo.Departamento;
 import com.faculdade.repository.DepartamentoRepository;
 import com.faculdade.service.DepartamentoService;
-
 import lombok.RequiredArgsConstructor;
 
 //Aqui estremos implementando os metodos do Departamento
@@ -55,8 +52,12 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 
 	@Override
 	public void excluirDepartamento(Long id) {
-		Departamento excluir = buscarDepartamento(id);
-		departamentoRepository.deleteById(excluir.getIdDepartamento());
+		Departamento excluir = buscarDepartamento(id);		
+		if(excluir!=null) {
+			departamentoRepository.deleteById(excluir.getIdDepartamento());
+		}else {
+			throw new IllegalArgumentException("Departamento não encontrado com o ID: "+id);
+		}
 	}
 	
 
