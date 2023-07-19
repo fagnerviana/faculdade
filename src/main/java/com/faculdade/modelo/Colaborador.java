@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import com.faculdade.modelo.enums.StatusAtual;
 import com.faculdade.modelo.enums.TipoFuncionario;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -14,7 +16,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,23 +37,25 @@ public class Colaborador implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long idProfessor;
+	private long idColaborador;
 	
-	@Column(length = 50,nullable = false)
+	@Column(name = "nome",length = 50,nullable = false)
 	private String nome;
-	@Column(length = 50,nullable = false)
+	@Column(name = "sobrenome",length = 50,nullable = false)
 	private String sobrenome;
-	@Column(length = 50,nullable = false)
+	@Column(name = "email",length = 50,nullable = false)
 	private String email;
-	@Column(length = 15,nullable = false)
+	@Column(name = "senha",length = 15,nullable = false)
 	private String senha;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "iddepartamento")
+	//@JsonManagedReference
+	@JsonBackReference
+	@ManyToOne
+    @JoinColumn(name = "idDepartamento")
 	private Departamento departamento;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(length = 15,nullable = false)
+	@Column(name = "status",length = 15,nullable = false)
 	private StatusAtual status;
 	
 	@Enumerated(EnumType.STRING)
