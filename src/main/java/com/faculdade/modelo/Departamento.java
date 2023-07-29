@@ -3,10 +3,7 @@ package com.faculdade.modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,13 +12,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -50,6 +45,11 @@ public class Departamento implements Serializable {
 	public Departamento(Long idDepartamento, String nome) {
 		super();
 		this.idDepartamento = idDepartamento;
+		this.nome = nome;
+	}
+
+	public Departamento(String nome) {
+		super();
 		this.nome = nome;
 	}
 	

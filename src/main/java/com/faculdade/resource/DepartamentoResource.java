@@ -2,6 +2,8 @@ package com.faculdade.resource;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.faculdade.modelo.Departamento;
+import com.faculdade.resource.dto.DepartamentoDto;
+import com.faculdade.resource.dto.DepartamentoRespostaDto;
 import com.faculdade.service.DepartamentoService;
 
 import io.swagger.annotations.Api;
@@ -28,8 +32,10 @@ public class DepartamentoResource {
 	
 			
 	@GetMapping("/{id}")
-	public Departamento buscarDepartamento(@PathVariable("id") Long id) {
-		return departamentoservice.buscarDepartamento(id);
+	public ResponseEntity<DepartamentoDto> buscarDepartamento(@PathVariable("id") Long id) {
+		Departamento departamento = departamentoservice.buscarDepartamento(id);
+		DepartamentoDto dto= new DepartamentoDto(departamento.getIdDepartamento(),departamento.getNome());
+		return new ResponseEntity<>(dto, HttpStatus.OK);
 	}
 	
 	@GetMapping("/listar")
@@ -37,6 +43,7 @@ public class DepartamentoResource {
 		return departamentoservice.listarDepartamento();
 	}
 	
+		
 	@PutMapping("/{Departamento}")
 	public Departamento atualizarDepartamento( Long id, String nome) {
 		return departamentoservice.atualizarDepartamento(id,nome);
@@ -47,10 +54,12 @@ public class DepartamentoResource {
 		departamentoservice.excluirDepartamento(id);
 		return null;
 	}
-	@PostMapping
-	public Departamento incluirNovoDepartamento(@RequestBody Long id, String nome) {
+	
+	@PostMapping("/novo")
+	public ResponseEntity<DepartamentoRespostaDto> incluirNovoDepartamento(@RequestBody DepartamentoDto dpdto) {
+		Departamento novo = departamentoservice.incluirNovoDepartamento(dpdto.transformaParaObjeto());
 		
-		return departamentoservice.incluirNovoDepartamento(id, nome);
+		return new ResponseEntity<>(DepartamentoRespostaDto.transformaEmDTO(novo), HttpStatus.CREATED);
 		
 	}
 	

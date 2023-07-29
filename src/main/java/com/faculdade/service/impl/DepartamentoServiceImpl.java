@@ -1,7 +1,6 @@
 package com.faculdade.service.impl;
 
 import java.util.List;
-
 import org.springframework.stereotype.Service;
 import com.faculdade.modelo.Departamento;
 import com.faculdade.repository.DepartamentoRepository;
@@ -32,11 +31,7 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 				);
 		}
 
-	@Override
-	public List<Departamento> listarDepartamento() {
-		return departamentoRepository.findAll();
-	}
-
+	
 	@Override
 	public Departamento atualizarDepartamento(Long id, String nome) {
 		Departamento atualizar= new Departamento(id,nome);
@@ -45,9 +40,9 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 	}
 
 	@Override
-	public Departamento incluirNovoDepartamento(Long id, String nome) {
-		Departamento novo = new Departamento(id,nome);
-		return departamentoRepository.save(novo);
+	public Departamento incluirNovoDepartamento(Departamento dpt) {
+		
+		return departamentoRepository.save(dpt);
 	}
 
 	@Override
@@ -59,6 +54,15 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 			throw new IllegalArgumentException("Departamento não encontrado com o ID: "+id);
 		}
 	}
-	
+
+
+	@Override
+	public List<Departamento> listarDepartamento() {
+		// TODO Auto-generated method stub
+		return departamentoRepository.findAll();
+	}
+
+
+
 
 }

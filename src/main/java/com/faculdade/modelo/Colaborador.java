@@ -5,9 +5,6 @@ import java.io.Serializable;
 import com.faculdade.modelo.enums.StatusAtual;
 import com.faculdade.modelo.enums.TipoFuncionario;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -48,6 +45,34 @@ public class Colaborador implements Serializable{
 	@Column(name = "senha",length = 15,nullable = false)
 	private String senha;
 	
+	
+	public Colaborador(String nome, String sobrenome, String email, String senha, Departamento departamento,
+			StatusAtual status, TipoFuncionario tipoFuncionario) {
+		super();
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.email = email;
+		this.senha = senha;
+		this.departamento = departamento;
+		this.status = status;
+		this.tipoFuncionario = tipoFuncionario;
+	}
+	
+	
+
+	public Colaborador(String nome, String sobrenome, String email, Departamento departamento, StatusAtual status,
+			TipoFuncionario tipoFuncionario) {
+		super();
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.email = email;
+		this.departamento = departamento;
+		this.status = status;
+		this.tipoFuncionario = tipoFuncionario;
+	}
+
+
+
 	//@JsonManagedReference
 	@JsonBackReference
 	@ManyToOne
@@ -59,9 +84,8 @@ public class Colaborador implements Serializable{
 	private StatusAtual status;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(length = 20,nullable = false)
+	@Column(length = 20,nullable = true)
 	private TipoFuncionario tipoFuncionario;
-	
-	
+		
 
 }
