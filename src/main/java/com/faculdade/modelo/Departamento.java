@@ -1,16 +1,11 @@
 package com.faculdade.modelo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,22 +33,14 @@ public class Departamento implements Serializable {
 	private String nome;
 	
 	//@JsonBackReference
-	@JsonManagedReference
-	@OneToMany(mappedBy="departamento",cascade = CascadeType.ALL)
-	private List<Colaborador>colaboradores= new ArrayList<>();
+	//@JsonManagedReference
+	//@OneToMany(mappedBy="departamento",cascade = CascadeType.ALL)
+	//private List<Colaborador>colaboradores= new ArrayList<>();
 
-	public Departamento(Long idDepartamento, String nome) {
-		super();
-		this.idDepartamento = idDepartamento;
-		this.nome = nome;
-	}
-
+	//Para atender o DTO retornar somente o nome do departamento
 	public Departamento(String nome) {
-		super();
-		this.nome = nome;
+		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 	
 }

@@ -1,5 +1,9 @@
 package com.faculdade.modelo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,14 +32,25 @@ public class Curso {
 	@Column(name = "nome", length = 60, nullable = false)
 	private String nome;
 	
+
+	//@JsonBackReference
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "iddepartamento")
 	private Departamento departamento;
 	
+	
+	//@JsonBackReference
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idnivelescolaridade")
 	private NivelEscolaridade nivelEscolaridade;
-	
-	
+
+	public Curso(String nome, Departamento departamento, NivelEscolaridade nivelEscolaridade) {
+		
+		this.nome = nome;
+		this.departamento = departamento;
+		this.nivelEscolaridade = nivelEscolaridade;
+	}
+
+		
 
 }
